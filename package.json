@@ -1,10 +1,10 @@
 {
-  "name": "reactlibrary",
-  "version": "1.0.0",
+  "name": "wp-auto-react",
+  "version": "0.1.0",
   "description": "",
   "author": "kolserdav",
   "license": "MIT",
-  "repository": "kolserdav/reactlibrary",
+  "repository": "https://github.com/kolserdav/wp-react",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -57,5 +57,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "wordpress-data": "^0.0.1"
+  }
 }

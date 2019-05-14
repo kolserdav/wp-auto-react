@@ -1,8 +1,31 @@
-/* add css styles here (optional) */
+/* add css es  (optional) */
+
+body {
+  --light-color: white;
+}
 
 .test {
   display: inline-block;
   margin: 2em auto;
   border: 2px solid #000;
   font-size: 2em;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.grid_container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.navbar_root {
+	
+}
+
+.navbar_link {
+  text-decoration: none;
+  color: var(--light-color);
 }

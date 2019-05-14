@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-
-import WordpressApi from 'reactlibrary'
+import React, { Component } from 'react';
+import { WpPost, WpDecorator } from 'reactlibrary';
+import { Link } from 'react-router-dom';
 
 export default class App extends Component {
   render () {
@@ -11,16 +11,7 @@ export default class App extends Component {
 			);
 		}
     return (
-      <div>
-        <WordpressApi 
-					get={'POSTS_FOR_ID'}
-					items={[40, 42, 443]}
-					element={element}/>
-				<WordpressApi
-					get={'CATEGORIES_LIST'}
-					element={element}
-				/>
-      </div>
-    )
+      <WpDecorator />
+    );
   }
 }

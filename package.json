@@ -19,7 +19,8 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "save": "node node_modules/wordpress-data/index --host http://wordpress.loc"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -62,6 +63,7 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "react-router-dom": "^5.0.0",
+    "redux": "^4.0.1",
     "wordpress-data": "^0.0.3"
   },
   "stats": "errors-only"

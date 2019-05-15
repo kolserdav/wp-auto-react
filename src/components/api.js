@@ -19,7 +19,7 @@ const development = 'development';
 export default class WpApi extends Component {
 	constructor(props) {
 		super(props);
-		this.level = 1;
+		this.level = 3;
 		this.state = {
 			element: ''
 		};
@@ -62,7 +62,7 @@ export default class WpApi extends Component {
 		let result;
 		try {
 			// eslint-disable-next-line
-			result = require(`../../../storage/${name}.json`);
+			result = require(`../../../storage/${name}.json`)
 		}
 		catch(e) {}
 		return result;
@@ -174,6 +174,8 @@ export default class WpApi extends Component {
 				this.setElementToState(dataPostsForId);
 				break;
 			default:
+				const error = new Error(`Property get={'${this.get}'} is not accepted`);
+				console.error(error.stack);
 				break;
 		}
 	}

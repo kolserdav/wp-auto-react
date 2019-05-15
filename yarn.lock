@@ -8790,6 +8790,14 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
+redux@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.1.tgz#436cae6cc40fbe4727689d7c8fae44808f1bfef5"
+  integrity sha512-R7bAtSkk7nY6O/OYMVR9RiBI+XghjF9rlbl5806HJbQph0LJVHZrU5oaO4q70eUKiqMRqm4y07KLTlMZ2BlVmg==
+  dependencies:
+    loose-envify "^1.4.0"
+    symbol-observable "^1.2.0"
+
 regenerate-unicode-properties@^8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/regenerate-unicode-properties/-/regenerate-unicode-properties-8.0.2.tgz#7b38faa296252376d363558cfbda90c9ce709662"
@@ -9949,7 +9957,7 @@ sw-toolbox@^3.4.0:
     path-to-regexp "^1.0.1"
     serviceworker-cache-polyfill "^4.0.0"
 
-symbol-observable@1.2.0, symbol-observable@^1.0.4, symbol-observable@^1.1.0:
+symbol-observable@1.2.0, symbol-observable@^1.0.4, symbol-observable@^1.1.0, symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
   integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
@@ -10741,10 +10749,10 @@ window-size@0.1.0:
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
   integrity sha1-VDjNLqk7IC76Ohn+iIeu58lPnJ0=
 
-wordpress-data@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/wordpress-data/-/wordpress-data-0.0.2.tgz#e9f4e97082a3bc3ee07219319070a81a4240027f"
-  integrity sha512-vutG1ROJNUivfnSd3Bw3P2suWoCdqHpAl6U5uRFUyLnK0kOgpgOxldwBlaIXKw8fB3KW3bxLY/pB/ns9YJNSBw==
+wordpress-data@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/wordpress-data/-/wordpress-data-0.0.3.tgz#65566bcd6b8d4401c6ae5c7db87982e06aea5611"
+  integrity sha512-o1rUx00qTbhMPXwh77tDuZTi6CNO50BkQS7Wo3BcEdTxxNZzIALV76UGJv2kwbshrsrqV+oygNoCrxBhmKjmfw==
   dependencies:
     request "^2.88.0"
     wpapi "^1.2.1"

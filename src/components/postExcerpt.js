@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import getLocale from '../getLocale.js';
+import PropTypes from 'prop-types';
 
 // Components
 import WpApi from './api.js';
 
 
-export default class WpPost extends Component {
+export default class WpPostExcerpt extends Component {
 	
 	constructor(props) {
 		super(props);
 		this.props = props;
 		this.storages = props.storages;
-		this.id = this.getPostId();
+		this.id = props.id;
 		this.lang = getLocale();
 	}
+
 	
 	getPostId() {
 		const id = window.location.href.match(/\d+$/);
@@ -27,7 +29,7 @@ export default class WpPost extends Component {
 			let title, content;
 			if (post !== undefined) {
 				title = post.title;
-				content = post.content;
+				content = post.excerpt;
 			}
 			else {
 				title = 404;
@@ -51,3 +53,7 @@ export default class WpPost extends Component {
 		);
 	}
 }
+
+WpPostExcerpt.propTypes = {
+	id: PropTypes.number.isRequired,
+};

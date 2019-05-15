@@ -17,8 +17,6 @@ export default class WpDecorator extends Component {
 		super(props);
 		this.props = props;
 		this.lang = getLocale();
-		this.id = window.location.href.match(/\d+$/);
-		this.id = (this.id)? this.id[0] : -1;
 	}
 
 	menu() {
@@ -35,19 +33,14 @@ export default class WpDecorator extends Component {
 					</Typography>
 				</WpNavbar>
 				<Grid className={styles.grid_container} container spaces={8}>
-					<Grid item xs={12} sm={6}>
+					<Grid item xs={12} sm={3}>
 						<div></div>
 					</Grid>
 					<Grid item xs={12} sm={6}>
 						<Route path='/home' component={WpHome} />
-						<Route path='/post:id' component={() => {
-							return (
-								<div>
-									<WpPost id={this.id}/>
-								</div>
-							);
-						}} />
+						<Route path='/post:id' component={WpPost} />
 					</Grid>
+					<Grid item sm={3}></Grid>
 				</Grid>
 			</Router>
 		);

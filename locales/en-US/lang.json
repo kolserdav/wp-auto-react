@@ -2,5 +2,7 @@
 		"CATEGORIES": "categories",
 		"POSTS": "posts",
 		"PAGES": "pages",
-		"HOME": "home"
+		"HOME": "home",
+		"MORE": "more",
+		"NO_CONTENT": "Oops content was not found..."
 }

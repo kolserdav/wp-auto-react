@@ -10,6 +10,7 @@ import WpNavbar from './navbar.js';
 import WpPost from './post.js';
 import WpMenu from './menu.js';
 import WpHome from './home.js';
+import MenuBar from './menuNested.js';
 
 export default class WpDecorator extends Component {
 	
@@ -24,12 +25,14 @@ export default class WpDecorator extends Component {
 	}
 
 	render() {
+		let classes = {list: 'list', menuHeader: 'menu-'}
 		return (
 			<Router>
 				<WpNavbar>
 					<WpMenu />
+					<MenuBar classes={classes}/>
 					<Typography>
-						<Link className={styles.navbar_link} to='/home'>{ this.lang.HOME.toUpperCase() }</Link>
+						<Link className={styles.navbar_link} to='/home/list:1'>{ this.lang.HOME.toUpperCase() }</Link>
 					</Typography>
 				</WpNavbar>
 				<Grid className={styles.grid_container} container spaces={8}>

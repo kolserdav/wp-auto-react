@@ -12,7 +12,8 @@ export default class WpPost extends Component {
 		super(props);
 		this.props = props;
 		this.storages = props.storages;
-		this.id = this.getPostId();
+		this.id = (this.props.id)? this.props.id : this.getPostId();
+		this.home = (this.props.home)? 'HOME_POST' : 'POSTS_FOR_ID';
 		this.lang = getLocale();
 	}
 	
@@ -23,6 +24,7 @@ export default class WpPost extends Component {
 
 	render() {
 		const element = (data, html) => {
+			console.log(data)
 			const post = data.items[0];
 			let title, content;
 			if (post !== undefined) {
@@ -43,7 +45,7 @@ export default class WpPost extends Component {
 		return (
 			<div>
 				<WpApi 
-					get={'POSTS_FOR_ID'}
+					get={this.home}
 					items={[this.id]}
 					element={element}
 				/>

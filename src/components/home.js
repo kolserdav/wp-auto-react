@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import styles from '../styles.css';
 import Typography from '@material-ui/core/Typography';
@@ -16,12 +17,14 @@ export default class WpHome extends Component {
 	constructor(props) {
 		super(props);
 		this.props = props;
+
 	}
 
 
 	render() {
 		return (
 			<div>
+				<WpPost home={true} />
 				<WpPostsList />
 			</div>
 		);

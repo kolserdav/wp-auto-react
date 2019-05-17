@@ -13,13 +13,14 @@ const postsForId = 'POSTS_FOR_ID';
 const pagesForId = 'PAGES_FOR_ID';
 const categoriesForId = 'CATEGORIES_FOR_ID';
 const allLists = 'ALL_LISTS';
+const homePost = 'HOME_POST';
 const development = 'development';
 
 
 export default class WpApi extends Component {
 	constructor(props) {
 		super(props);
-		this.level = 3;
+		this.level = 1;
 		this.state = {
 			element: ''
 		};
@@ -172,6 +173,32 @@ export default class WpApi extends Component {
 					items: this.getAllItems(this.props)
 				};
 				this.setElementToState(dataPostsForId);
+				break;
+			case homePost:
+				let dataHomePost;
+				switch(this.level) {
+					case 1: 
+						try {
+							// eslint-disable-next-line
+							dataHomePost = require(`../storage/posts/post_home.json`);
+						}
+						catch(e) {}
+						break;
+					case 3:
+						try {
+							// eslint-disable-next-line
+							dataHomePost = require(`../../../storage/posts/post_home.json`);
+						}
+						catch(e) {}
+						break;
+					default:
+						break;
+				}
+				dataHomePost = {
+					name: this.get,
+					items: [dataHomePost]
+				};
+				this.setElementToState(dataHomePost);
 				break;
 			default:
 				const error = new Error(`Property get={'${this.get}'} is not accepted`);

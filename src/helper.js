@@ -13,10 +13,21 @@ function newStore(actionType, property, args = []) {
 	 }, args);
 }
 
-function	analyzeUrl() {
+function	analyzeUrl(selector = 'post:') {
 	const url = window.location.href;
-	const path = url.match(/post:\d+/);
-	return (path)? parseInt(path[0].replace('post:', '')) : -1;
+	let path;
+	switch(selector) {
+		case 'post:': 
+			path = url.match(/post:\d+/);
+			break;
+		case 'list:':
+			path = url.match(/list:\d+/);
+			break;
+		case 'num':
+			path = url.match(/num:\d+/);
+			break;
+	}
+	return (path)? parseInt(path[0].replace(selector, '')) : -1;
 }		
 
 function getNews(items, postsCount = null) {

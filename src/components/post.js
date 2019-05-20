@@ -24,7 +24,6 @@ export default class WpPost extends Component {
 
 	render() {
 		const element = (data, html) => {
-			console.log(data)
 			const post = data.items[0];
 			let title, content;
 			if (post !== undefined) {

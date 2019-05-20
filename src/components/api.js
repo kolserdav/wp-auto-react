@@ -22,7 +22,7 @@ export default class WpApi extends Component {
 		super(props);
 		this.level = 1;
 		this.state = {
-			element: ''
+			element: false
 		};
 		this.mode = development;
 		this.props = props;
@@ -40,8 +40,9 @@ export default class WpApi extends Component {
   }
 
 	setElementToState(element) {
+		this.element = this.props.element(element, this.dangerousHTML);
 		this.setState({
-			element: this.props.element(element, this.dangerousHTML)
+			element: true
 		});
 	}
 
@@ -246,7 +247,7 @@ export default class WpApi extends Component {
   render() {
     return (
       <div>
-				{this.state.element}
+				{this.state.element? this.element : <div></div>}
       </div>
     )
   }

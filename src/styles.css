@@ -11,6 +11,11 @@ body {
   font-size: 2em;
 }
 
+.list { 
+  top: 25px;
+  z-index: 1;
+}
+
 .link {
   text-decoration: none;
 }

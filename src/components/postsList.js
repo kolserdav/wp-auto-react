@@ -61,10 +61,6 @@ export default class WpPostsList extends Component {
 		return (<div>{this.pagination}</div>);
 	}
 
-	componentDidMount() {
-		console.log(312)
-	}
-
 	render() {
 		this.id = analyzeUrl('list:');
 		const elementPostsList = (data, html) => {

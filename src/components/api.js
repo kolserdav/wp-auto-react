@@ -175,6 +175,13 @@ export default class WpApi extends Component {
 				};
 				this.setElementToState(dataPostsForId);
 				break;
+			case pagesForId:
+				const dataPagesForId = {
+					name: this.get,
+					items: this.getAllItems(this.props)
+				};
+				this.setElementToState(dataPagesForId);
+				break;
 			case homePost:
 				let dataHomePost;
 				switch(this.level) {

@@ -10749,10 +10749,10 @@ window-size@0.1.0:
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
   integrity sha1-VDjNLqk7IC76Ohn+iIeu58lPnJ0=
 
-wordpress-data@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/wordpress-data/-/wordpress-data-0.0.8.tgz#8436b79f9225a224b8cd85486a31a8e6a458949b"
-  integrity sha512-BVZz8UkE6attT0lqTlA5SeD6i/TMto+mF9EkDCk4y6fCZtNDlOAEvjty2AhpQPHeZcv2yJhAhk4VHtO1fbQHhw==
+wordpress-data@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/wordpress-data/-/wordpress-data-0.0.10.tgz#52a9e2163fdd5ec02c93538ec95b82e5ea4d7566"
+  integrity sha512-8rDl0i55lD+mHAYWVwKM4FmZtdKapJKtXC9YWMyjNFlxjqX2/gFfkclBavGyjno9eTr9KiAyKhTJKCNn3Muhfg==
   dependencies:
     request "^2.88.0"
     wpapi "^1.2.1"

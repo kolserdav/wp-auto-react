@@ -10,6 +10,7 @@ import WpNavbar from './navbar.js';
 import WpPost from './post.js';
 import WpMenu from './menu.js';
 import WpHome from './home.js';
+import WpPage from './page.js';
 
 export default class WpDecorator extends Component {
 	
@@ -36,6 +37,7 @@ export default class WpDecorator extends Component {
 					<Grid item xs={12} sm={6}>
 						<Route path='/home' component={WpHome} />
 						<Route path='/post:id' component={WpPost} />
+						<Route path='/page:id' component={WpPage} />
 					</Grid>
 					<Grid item sm={3}></Grid>
 				</Grid>

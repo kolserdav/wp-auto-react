@@ -23,8 +23,8 @@ function	analyzeUrl(selector = 'post:') {
 		case 'list:':
 			path = url.match(/list:\d+/);
 			break;
-		case 'num':
-			path = url.match(/num:\d+/);
+		case 'page:':
+			path = url.match(/page:\d+/);
 			break;
 	}
 	return (path)? parseInt(path[0].replace(selector, '')) : -1;

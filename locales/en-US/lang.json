@@ -4,5 +4,6 @@
 		"PAGES": "pages",
 		"HOME": "home",
 		"MORE": "more",
-		"NO_CONTENT": "Oops content was not found..."
+		"NO_CONTENT": "Oops content was not found...",
+		"POSTS_LIST_HEADER": "Posts list"
 }

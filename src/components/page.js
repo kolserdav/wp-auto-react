@@ -14,13 +14,18 @@ export default class WpPage extends Component {
   render() {
 		this.id = analyzeUrl('page:');
 		const element = (data, html) => {
-			console.log(23,data)
+			const item = data.items[0];
 			return (
-				<div>{data.id}</div>
+				<div>{item.title}{html(item.content)}</div>
 			);
 		}
     return (
       <div>
+				<WpApi
+					get={'PAGES_FOR_ID'}
+					items={[this.id]}
+					element={element}
+				/>
 			</div>
     );
   }

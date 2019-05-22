@@ -31,19 +31,12 @@ export default class WpApi extends Component {
 		this.includeData();
 	}
 
-	componentDidMount() {
-		this.getRequest(this.level);
-	}
-
   static propTypes = {
     text: PropTypes.string
   }
 
-	setElementToState(element) {
-		this.element = this.props.element(element, this.dangerousHTML);
-		this.setState({
-			element: true
-		});
+	setElement(element) {
+		this.element = element;
 	}
 
 	dangerousHTML (content) {
@@ -131,7 +124,7 @@ export default class WpApi extends Component {
 		this.get = this.props.get.toUpperCase();
 		switch(this.get) {
 			case allLists:
-				this.setElementToState({
+				this.setElement({
 					name: allLists,
 					posts: this.dataPosts,
 					pages: this.dataPages,
@@ -139,48 +132,48 @@ export default class WpApi extends Component {
 				});
 				break;
 			case postsList:
-				this.setElementToState(this.dataPosts);
+				this.setElement(this.dataPosts);
 				break;
 			case pagesList:
-				this.setElementToState(this.dataPages);
+				this.setElement(this.dataPages);
 				break;
 			case categoriesList:
-				this.setElementToState(this.dataCategories);
+				this.setElement(this.dataCategories);
 				break;
 			case allPosts:
 				const dataAllPosts = {
 					name: this.get,
 					items: this.getAllItems(this.dataPosts)
 				};
-				this.setElementToState(dataAllPosts);
+				this.setElement(dataAllPosts);
 				break;
 			case allPages:
 				const dataAllPages = {
 					name: this.get,
 					items: this.getAllItems(this.dataPages)
 				};
-				this.setElementToState(dataAllPages);
+				this.setElement(dataAllPages);
 				break;
 			case allCategories:
 				const dataAllCategories = {
 					name: this.get,
 					items: this.getAllItems(this.dataCategories)
 				};
-				this.setElementToState(dataAllCategories);
+				this.setElement(dataAllCategories);
 				break;
 			case postsForId:
 				const dataPostsForId = {
 					name: this.get,
 					items: this.getAllItems(this.props)
 				};
-				this.setElementToState(dataPostsForId);
+				this.setElement(dataPostsForId);
 				break;
 			case pagesForId:
 				const dataPagesForId = {
 					name: this.get,
 					items: this.getAllItems(this.props)
 				};
-				this.setElementToState(dataPagesForId);
+				this.setElement(dataPagesForId);
 				break;
 			case homePost:
 				let dataHomePost;
@@ -206,7 +199,7 @@ export default class WpApi extends Component {
 					name: this.get,
 					items: [dataHomePost]
 				};
-				this.setElementToState(dataHomePost);
+				this.setElement(dataHomePost);
 				break;
 			default:
 				const error = new Error(`Property get={'${this.get}'} is not accepted`);
@@ -252,9 +245,10 @@ export default class WpApi extends Component {
 	}		
 
   render() {
+		this.getRequest(this.level);
     return (
       <div>
-				{this.state.element? this.element : <div></div>}
+				{this.props.element(this.element, this.dangerousHTML)}
       </div>
     )
   }

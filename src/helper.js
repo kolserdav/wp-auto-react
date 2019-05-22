@@ -13,6 +13,15 @@ function newStore(actionType, property, args = []) {
 	 }, args);
 }
 
+function firstCapitalize(word) {
+	let wordWrite = '';
+	for (let i = 0; i < word.length; i ++) {
+		let symbol = (i === 0)? word[i].toUpperCase() : word[i];
+		wordWrite += symbol;
+	}
+	return wordWrite;
+}
+
 function	analyzeUrl(selector = 'post:') {
 	const url = window.location.href;
 	let path;
@@ -51,4 +60,4 @@ function getNews(items, postsCount = null) {
 	return Helpers.items;
 }
 
-export { createStore, analyzeUrl, getNews }
+export { createStore, analyzeUrl, getNews, firstCapitalize }

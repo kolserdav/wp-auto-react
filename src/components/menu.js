@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../styles.css';
+import { analyzeUrl } from '../helper.js';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -8,6 +9,8 @@ import getLocale from '../getLocale.js';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import CloseIcon from '@material-ui/icons/Close';
+import Typography from '@material-ui/core/Typography';
 
 // Components
 import WpApi from './api.js';
@@ -24,15 +27,6 @@ export default class WpMenu extends Component {
 			open: false
 		};
 		this.itemHeight = 48;
-	}
-
-	firstCapitalize(word) {
-		let wordWrite = '';
-		for (let i = 0; i < word.length; i ++) {
-			let symbol = (i === 0)? word[i].toUpperCase() : word[i];
-			wordWrite += symbol;
-		}
-		return wordWrite;
 	}
 
 	handleClick = event => {
@@ -69,17 +63,22 @@ export default class WpMenu extends Component {
 	}
 
 	render() {
-		const OptionsElement = () => {
-			const data = this.getData();
+		this.id = analyzeUrl('page:');
+		const OptionsElement = (data) => {
+			let selected = (!this.id);
 			return (
 				<div>
+					<MenuItem selected={selected} onClick={this.handleClose} key={'close-button'}><CloseIcon /></MenuItem>
 				{
 					data.titles.map((item, index, array) => {
 						if (item.parent === null && item.children.length === 0) {
+							selected = (item.id === this.id);
 							return (
-								<MenuItem key={item.id}>
-									<Link to={`/page:${item.id}`}>{item.title}</Link>
-								</MenuItem>
+								<Link key={`menu-item-${item.id}`} className={styles.link} to={`/page:${item.id}`}>
+									<MenuItem selected={selected}>
+										<Typography className={styles.itemMenu}>{ item.title }</Typography>
+									</MenuItem>
+								</Link>
 							);
 						}
 						else if (item.parent === null && item.children.length > 0) {
@@ -88,39 +87,51 @@ export default class WpMenu extends Component {
 								const i = data.indexes[item1];
 								const secondLevelTitle = `|____${data.titles[i].title}`;
 								if (data.titles[i].children.length === 0){
+									selected = (item1 === this.id);
 									return (
-										<MenuItem key={item1}>
-										{ secondLevelTitle }
-										</MenuItem>
+										<Link to={`/page:${item1}`} className={styles.link} key={`item-menu-${item1}`}>
+											<MenuItem selected={selected}>
+												<Typography className={styles.itemMenu}>{ secondLevelTitle }</Typography>
+											</MenuItem>
+										</Link>
 									);
 								}
 								else {
 									this.subChildren = (!this.subChildren)? {} : this.subChildren;
 									this.subChildren[item1] =  data.titles[i].children.map(item2 => {
 										const ii = data.indexes[item2];
+										selected = (item2 === this.id);
 										return (
-											<MenuItem key={item2} onClick={this.handleSpoyler(item2)}>
-											{'|____|____'}{data.titles[ii].title}
-											</MenuItem>
+											<Link key={`menu-item-${item2}`} className={styles.link} to={`/page:${item2}`}>
+												<MenuItem selected={selected} onClick={this.handleSpoyler(item2)}>
+													<Typography className={styles.itemMenu}>{ '|____|____'}{data.titles[ii].title }</Typography>
+												</MenuItem>
+											</Link>
 										);
 									});
+									selected = (item1 === this.id);
 									return (
-										<div key={`d-${item1}`}>
-											<MenuItem key={item1} onClick={this.handleSpoyler(item1)}>
-												{ secondLevelTitle }
-												{this.state[item1]? <ExpandLessIcon /> : <ExpandMoreIcon />}
-											</MenuItem>
+										<div key={`menu-item-${item1}`}>
+											<Link to={`/page:${item1}`} className={styles.link}>
+												<MenuItem selected={selected} onClick={this.handleSpoyler(item1)}>
+													<Typography className={styles.itemMenu}>{ secondLevelTitle }</Typography>
+													{this.state[item1]? <ExpandLessIcon /> : <ExpandMoreIcon />}
+												</MenuItem>
+											</Link>
 											{this.state[item1]? this.subChildren[item1] : <div></div>}
 										</div>
 									);
 								}
 							});
+							selected = (item.id === this.id);
 							return (
-								<div key={`d-${item.id}`}>
-									<MenuItem key={item.id} onClick={this.handleSpoyler(item.id)}>
-										{item.title}
-									{this.state[item.id]? <ExpandLessIcon /> : <ExpandMoreIcon />}
-									</MenuItem>
+								<div key={`menu-item-${item.id}`}>
+									<Link className={styles.link} to={`/page:${item.id}`}>
+										<MenuItem selected={selected} onClick={this.handleSpoyler(item.id)}>
+											<Typography className={styles.itemMenu}>{item.title}</Typography>
+										{this.state[item.id]? <ExpandLessIcon /> : <ExpandMoreIcon />}
+										</MenuItem>
+									</Link>
 									{this.state[item.id]? this.children[item.id] : <div></div>}
 								</div>
 							);
@@ -152,7 +163,10 @@ export default class WpMenu extends Component {
 						},
 					}}
 				>
-					<OptionsElement />
+					<WpApi
+						get={'PAGES_LIST'}
+						element={OptionsElement}
+					/>
 						})
 					}
 				</Menu>

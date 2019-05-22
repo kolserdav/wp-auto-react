@@ -24,7 +24,9 @@ export default class WpHome extends Component {
 	render() {
 		return (
 			<div>
-				<WpPost home={true} />
+				<div className={styles.homePost}>
+					<WpPost home={true} />
+				</div>
 				<WpPostsList />
 			</div>
 		);

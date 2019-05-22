@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import styles from '../styles.css';
 import Typography from '@material-ui/core/Typography';
 import getLocale from '../getLocale.js';
@@ -51,10 +52,10 @@ export default class WpPostsList extends Component {
 		this.pagination.push(left)
 		for (let i = 1; i < length + 1; i ++) {
 			if (i === this.id){
-				this.pagination.push(`  ${i}  `)
+				this.pagination.push(`      ${i}			  `)
 			}
 			else {
-				this.pagination.push(<Link key={`pagination-${i}`} to={`${this.pathName}${i}`}>  {i}  </Link>);
+				this.pagination.push(<Link className={styles.link} key={`pagination-${i}`} to={`${this.pathName}${i}`}>      {i}      </Link>);
 			}
 		}
 		this.pagination.push(right);
@@ -63,16 +64,8 @@ export default class WpPostsList extends Component {
 
 	render() {
 		this.id = analyzeUrl('list:');
-		const elementPostsList = (data, html) => {
-			this.setState({postsList: data}, () => {
-				this.setState({postsListIsMounted: true});
-			});
-			return (
-				<div></div>
-			);
-		};
-		const postsList = () => {
-			const list = this.state.postsList.items;
+		const postsList = (data, html) => {
+			const list = data.items;
 			if (list.length >= this.countPostsToPage) {
 				const firstList = getNews(list, this.countPostsToPage);
 				this.elementChunks = firstList.map(item => {
@@ -88,14 +81,13 @@ export default class WpPostsList extends Component {
 			);
 		};
 		return (
-			<div>
-				{ this.state.postsListIsMounted? postsList() : <div></div> }
-				{ this.state.pagination }
+			<Paper className={styles.paper}>
+				<Typography variant='h5' className={styles.headerOfBlock}>{ this.lang.POSTS_LIST_HEADER }</Typography>
 				<WpApi
 					get={'POSTS_LIST'}
-					element={elementPostsList}
+					element={postsList}
 				/>
-      </div>
+      </Paper>
 		);
 	}
 }

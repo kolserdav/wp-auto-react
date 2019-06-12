@@ -83,7 +83,9 @@ export default class WpPostsList extends Component {
 		return (
 			<Paper className={styles.paper}>
 				<Typography variant='h5' className={styles.headerOfBlock}>{ this.lang.POSTS_LIST_HEADER }</Typography>
+				<Typography variant="subtitle1">{ this.lang.POSTS_LIST_DESCRIPTION }</Typography>
 				<WpApi
+					className={styles.postsList}
 					get={'POSTS_LIST'}
 					element={postsList}
 				/>

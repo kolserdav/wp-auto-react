@@ -9,12 +9,14 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
+    "react-to-s3": "^0.0.1",
     "reactlibrary": "link:.."
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "put": "node node_modules/react-to-s3/index hrty323"
   }
 }

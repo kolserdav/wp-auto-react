@@ -24,7 +24,7 @@ export default class WpNavbar extends Component {
 		const color = (this.props.color)? this.props.color : 'primary';
 		return (
 			<div className={styles.navbar_root}>
-				<AppBar position={position}>
+				<AppBar position="fixed">
 					<Toolbar>
 						{ this.props.children }
 					</Toolbar>

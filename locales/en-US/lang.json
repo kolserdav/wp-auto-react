@@ -5,5 +5,7 @@
 		"HOME": "home",
 		"MORE": "more",
 		"NO_CONTENT": "Oops content was not found...",
-		"POSTS_LIST_HEADER": "Posts list"
+		"POSTS_LIST_HEADER": "Posts list",
+		"POSTS_LIST_DESCRIPTION": "This block show all posts from the Wordpress site",
+		"MENU_HEADER": "In this menu shows all pages from Wordpress site"
 }

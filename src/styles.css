@@ -4,13 +4,37 @@ body {
   --light-color: white;
 }
 
+.has-large-font-size {
+	font-size: 16pt;
+}
+
+.postsList {
+	margin-top: 20px;
+}
+
+.subHeader {
+	padding-top: 70px;
+
+}
+
+.page {
+	margin-top: 40px;
+  padding: 12px;
+}
+
+.post {
+  padding-top: 30px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
 .headerOfBlock {
   padding: 30px;
   text-align: center
 }
 
 .homePost {
-  padding: 30px;
+  padding: 12px;
 }
 
 .test {

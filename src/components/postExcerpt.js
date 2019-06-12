@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import styles from '../styles.css';
 import getLocale from '../getLocale.js';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -53,7 +55,7 @@ export default class WpPostExcerpt extends Component {
 			}
 			return (
 				<div>
-					<Typography variant="h6">{ title }  { this.state.iconTop }</Typography>
+					<Link className={styles.link} to={`/post:${this.id}`}><Typography variant="h6">{ title }  { this.state.iconTop }</Typography></Link>
 					<Typography>{ this.state.full? html(fullContent) : html(content) }{ this.state.iconBottom }</Typography>
 				</div>
 			);

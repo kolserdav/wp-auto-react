@@ -32,7 +32,8 @@ export default class WpDecorator extends Component {
 					</Typography>
 				</WpNavbar>
 				<Grid className={styles.grid_container} container spaces={8}>
-					<Grid item xs={12} sm={3}>
+					<Grid className={styles.subHeader} item xs={12} sm={3}>
+						dasd
 					</Grid>
 					<Grid item xs={12} sm={6}>
 						<Route path='/home' component={WpHome} />

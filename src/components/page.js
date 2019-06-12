@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { analyzeUrl } from '../helper.js';
+import styles from '../styles.css';
 
 // Components
 import WpApi from './api.js';
@@ -16,7 +17,7 @@ export default class WpPage extends Component {
 		const element = (data, html) => {
 			const item = data.items[0];
 			return (
-				<div>{item.title}{html(item.content)}</div>
+				<div className={styles.page}>{item.title}{html(item.content)}</div>
 			);
 		}
     return (

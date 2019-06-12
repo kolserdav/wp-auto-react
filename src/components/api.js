@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import style from '../styles.css';
 import getLocale from '../getLocale.js';
+const env = require('../conf/env.json');
 
 const allPages = 'ALL_PAGES';
 const allPosts = 'ALL_POSTS';
@@ -20,7 +21,7 @@ const development = 'development';
 export default class WpApi extends Component {
 	constructor(props) {
 		super(props);
-		this.level = 1;
+		this.level = (env.devel)? 1 : 3;
 		this.state = {
 			element: false
 		};
@@ -28,7 +29,7 @@ export default class WpApi extends Component {
 		this.props = props;
 		this.pathPrefix = '';
 		this.dataDirName = 'storage';
-		this.includeData();
+		this.includeData(this.level);
 	}
 
   static propTypes = {
@@ -240,6 +241,7 @@ export default class WpApi extends Component {
 				this.dataCategories = this.threeLevelRequire('categories');
 				break;
 			default:
+				console.error(`Case ${i} not accepted in to 'includeData'`)
 				break;
 		}
 	}		
@@ -247,7 +249,7 @@ export default class WpApi extends Component {
   render() {
 		this.getRequest(this.level);
     return (
-      <div>
+      <div className={this.props.className}>
 				{this.props.element(this.element, this.dangerousHTML)}
       </div>
     )

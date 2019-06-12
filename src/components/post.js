@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import getLocale from '../getLocale.js';
+import styles from '../styles.css';
+import getFontSize from "../getFontSize.js";
 
 // Components
 import WpApi from './api.js';
@@ -34,15 +36,16 @@ export default class WpPost extends Component {
 				title = 404;
 				content = this.lang.NO_CONTENT;
 			}
+			const fontSize = getFontSize(content);
 			return (
-				<div>
-					<Typography variant="h6">{ title }</Typography>
-					<Typography>{ html(content) }</Typography>
+				<div className={styles.post}>
+					<Typography variant="h6" align="center">{ title }</Typography>
+					<Typography variant={fontSize}>{ html(content) }</Typography>
 				</div>
 			);
 		};
 		return (
-			<div>
+			<div className={styles.post}>
 				<WpApi 
 					get={this.home}
 					items={[this.id]}

@@ -11,6 +11,9 @@ import WpPost from './post.js';
 import WpMenu from './menu.js';
 import WpHome from './home.js';
 import WpPage from './page.js';
+import WpCategories from './categories.js';
+import WpCategory from './category.js';
+
 
 export default class WpDecorator extends Component {
 	
@@ -33,12 +36,13 @@ export default class WpDecorator extends Component {
 				</WpNavbar>
 				<Grid className={styles.grid_container} container spaces={8}>
 					<Grid className={styles.subHeader} item xs={12} sm={3}>
-						dasd
+						<WpCategories />
 					</Grid>
 					<Grid item xs={12} sm={6}>
 						<Route path='/home' component={WpHome} />
 						<Route path='/post:id' component={WpPost} />
 						<Route path='/page:id' component={WpPage} />
+						<Route path='/category:id' component={WpCategory} />
 					</Grid>
 					<Grid item sm={3}></Grid>
 				</Grid>

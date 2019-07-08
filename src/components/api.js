@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import style from '../styles.css';
 import getLocale from '../getLocale.js';
-const env = require('../conf/env.json');
+const request = require('sync-request');
 
 const allPages = 'ALL_PAGES';
 const allPosts = 'ALL_POSTS';
@@ -15,17 +15,16 @@ const pagesForId = 'PAGES_FOR_ID';
 const categoriesForId = 'CATEGORIES_FOR_ID';
 const allLists = 'ALL_LISTS';
 const homePost = 'HOME_POST';
-const development = 'development';
 
 
 export default class WpApi extends Component {
 	constructor(props) {
 		super(props);
-		this.level = (env.devel)? 1 : 3;
+		this.level = this.getLevel();
+		this.origin = window.location.origin;
 		this.state = {
 			element: false
 		};
-		this.mode = development;
 		this.props = props;
 		this.pathPrefix = '';
 		this.dataDirName = 'storage';
@@ -35,6 +34,45 @@ export default class WpApi extends Component {
   static propTypes = {
     text: PropTypes.string
   }
+
+	getLevel() {
+		let data, level;
+		level = 1;
+		try {
+			// eslint-disable-next-line
+			data = require('../storage/posts.json');
+		}
+		catch(e) {
+			level = 0;
+		}
+		if (level === 0) {
+			level = 3;
+			try {
+				// eslint-disable-next-line
+				data = require('../../../storage/posts.json');
+			}
+			catch(e) {
+				level = 0;
+			}
+			if (level === 0) {
+				level = 2;
+				try {
+					// eslint-disable-next-line
+					data = this.getDataSync('storage/posts.json');
+				}
+				catch(e) {
+					level = 0;
+				}
+				return level;
+			}
+			else {
+				return level;
+			}
+		}
+		else {
+			return level;
+		}
+	}
 
 	setElement(element) {
 		this.element = element;
@@ -49,6 +87,21 @@ export default class WpApi extends Component {
 		try {
 			// eslint-disable-next-line
 			result = require(`../storage/${name}.json`);
+		}
+		catch(e) {}
+		return result;
+	}
+	
+	getDataSync(url) {
+    var res = request('GET', `${this.origin}/${url}`);
+    return JSON.parse(res.body.toString('utf-8'));
+  }
+
+	zeroLevelRequire(name) {
+		let result;
+		try {
+			// eslint-disable-next-line
+			result = this.getDataSync(`storage/${name}.json`);
 		}
 		catch(e) {}
 		return result;
@@ -75,6 +128,13 @@ export default class WpApi extends Component {
 					}
 					catch(e) {}
 				}
+				else if (this.level === 2) {
+					try {
+						// eslint-disable-next-line
+						item = this.getDataSync(`storage/posts/post_${id}.json`);
+					}
+					catch(e) {}
+				}
 				else if (this.level === 3) {
 					try {
 						// eslint-disable-next-line
@@ -91,6 +151,13 @@ export default class WpApi extends Component {
 					}
 					catch (e) {}
 				}
+				else if (this.level === 2) {
+					try {
+						// eslint-disable-next-line
+						item = this.getDataSync(`storage/pages/page_${id}.json`);
+					}
+					catch(e) {}
+				}
 				else if (this.level === 3) {
 					try {
 						// eslint-disable-next-line
@@ -99,13 +166,20 @@ export default class WpApi extends Component {
 					catch (e) {}
 				}
 				break;
-			case allCategories:
+			case categoriesForId:
 				if (this.level === 1) {
 					try {
 						// eslint-disable-next-line
 						item = require(`../storage/categories/category_${id}.json`);
 					}
 					catch (e) {}
+				}
+				else if (this.level === 2) {
+					try {
+						// eslint-disable-next-line
+						item = this.getDataSync(`storage/categories/category_${id}.json`);
+					}
+					catch(e) {}
 				}
 				else if (this.level === 3) {
 					try {
@@ -176,6 +250,13 @@ export default class WpApi extends Component {
 				};
 				this.setElement(dataPagesForId);
 				break;
+			case categoriesForId:
+				const dataCategoriesForId = {
+					name: this.get,
+					items: this.getAllItems(this.props)
+				};
+				this.setElement(dataCategoriesForId);
+				break;
 			case homePost:
 				let dataHomePost;
 				switch(this.level) {
@@ -183,6 +264,13 @@ export default class WpApi extends Component {
 						try {
 							// eslint-disable-next-line
 							dataHomePost = require(`../storage/posts/post_home.json`);
+						}
+						catch(e) {}
+						break;
+					case 2:
+						try {
+							// eslint-disable-next-line
+							dataHomePost = this.getDataSync(`storage/posts/post_home.json`);
 						}
 						catch(e) {}
 						break;
@@ -221,7 +309,7 @@ export default class WpApi extends Component {
 			name = allPages;
 		}
 		else if (categoriesName) {
-			name = allCategories;
+			name = categoriesForId;
 		}
 		return data.items.map(item => {
 			return this.getItemForId(item, name);
@@ -234,6 +322,11 @@ export default class WpApi extends Component {
 				this.dataPosts = this.firstLevelRequire('posts');
 				this.dataPages = this.firstLevelRequire('pages');
 				this.dataCategories = this.firstLevelRequire('categories');
+				break;
+			case 2:
+				this.dataPosts = this.zeroLevelRequire('posts');
+				this.dataPages = this.zeroLevelRequire('pages');
+				this.dataCategories = this.zeroLevelRequire('categories');
 				break;
 			case 3:
 				this.dataPosts = this.threeLevelRequire('posts');

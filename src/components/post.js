@@ -7,7 +7,6 @@ import getFontSize from "../getFontSize.js";
 // Components
 import WpApi from './api.js';
 
-
 export default class WpPost extends Component {
 	
 	constructor(props) {

@@ -35,6 +35,9 @@ function	analyzeUrl(selector = 'post:') {
 		case 'page:':
 			path = url.match(/page:\d+/);
 			break;
+		case 'category:':
+			path = url.match(/category:\d+/);
+			break;
 	}
 	return (path)? parseInt(path[0].replace(selector, '')) : -1;
 }		

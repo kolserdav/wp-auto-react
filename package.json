@@ -1,6 +1,6 @@
 {
   "name": "wp-auto-react",
-  "version": "0.2.3",
+  "version": "0.2.12",
   "description": "",
   "author": "kolserdav",
   "license": "MIT",
@@ -66,7 +66,8 @@
     "@material-ui/icons": "^3.0.2",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
-    "wordpress-data": "^0.1.0"
+    "sync-request": "^6.1.0",
+    "wordpress-data": "^0.1.9"
   },
   "stats": "errors-only"
 }

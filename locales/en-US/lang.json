@@ -7,5 +7,10 @@
 		"NO_CONTENT": "Oops content was not found...",
 		"POSTS_LIST_HEADER": "Posts list",
 		"POSTS_LIST_DESCRIPTION": "This block show all posts from the Wordpress site",
-		"MENU_HEADER": "In this menu shows all pages from Wordpress site"
+		"MENU_HEADER": "In this menu shows all pages from Wordpress site",
+		"CATEGORY_HEADER": "In this page show the category for id",
+		"NO_CATEGORY": "Category not found",
+		"PARENT_CATEGORY_NAME": "Parent category",
+		"CHILD_CATEGORIES": "Child categories",
+		"DESCRIPTION_CATEGORY": "Category description"
 }

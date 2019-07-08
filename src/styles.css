@@ -4,6 +4,10 @@ body {
   --light-color: white;
 }
 
+.menuItem {
+	overflow: auto;
+}
+
 .has-large-font-size {
 	font-size: 16pt;
 }

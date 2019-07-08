@@ -23,7 +23,13 @@ export default class WpOptions extends Component {
 			anchorEl: null,
 			open: false
 		};
+		this.selector = '';
 		this.itemHeight = 48;
+		this.getSelector();
+	}
+
+	getSelector() {
+		this.selector = (this.props.selector)? this.props.selector : 'PAGES_LIST';
 	}
 
 	handleClick = event => {
@@ -44,11 +50,12 @@ export default class WpOptions extends Component {
 
 	render() {
 		const OptionsElement = (data) => {
+			console.log(data)
 			this.handleClickItem();
 			let selected = (!(this.id === -1))
 			return (
 				<div>
-					<MenuItem selected={selected} key={'close-button'}><Typography variant="subtitle2">{ this.lang.MENU_HEADER }</Typography></MenuItem>
+					<MenuItem selected={selected} key={'close-button'} style={{"overflow": "auto"}}><Typography variant="subtitle2">{ this.lang.MENU_HEADER }</Typography></MenuItem>
 				{
 					// First level items
 					data.titles.map((item, index, array) => {
@@ -57,7 +64,7 @@ export default class WpOptions extends Component {
 							selected = (item.id === this.id);
 							return (
 								<Link key={`menu-item-${item.id}`} onClick={this.handleClickItem} className={styles.link} to={`/page:${item.id}`}>
-									<MenuItem selected={selected}>
+									<MenuItem selected={selected} style={{"overflow": "auto"}}>
 										<Typography className={styles.itemMenu}>{ item.title }</Typography>
 									</MenuItem>
 								</Link>
@@ -68,12 +75,12 @@ export default class WpOptions extends Component {
 							this.children = (!this.children)? {} : this.children;
 							this.children[item.id] = item.children.map(item1 => {
 								const i = data.indexes[item1];
-								const secondLevelTitle = `|____${data.titles[i].title}`;
+								const secondLevelTitle = `-${data.titles[i].title}`;
 								if (data.titles[i].children.length === 0){
 									selected = (item1 === this.id);
 									return (
 										<Link to={`/page:${item1}`} className={styles.link} key={`item-menu-${item1}`} onClick={this.handleClickItem}>
-											<MenuItem selected={selected}>
+											<MenuItem selected={selected} style={{"overflow": "auto"}}>
 												<Typography className={styles.itemMenu}>{ secondLevelTitle }</Typography>
 											</MenuItem>
 										</Link>
@@ -86,8 +93,8 @@ export default class WpOptions extends Component {
 										selected = (item2 === this.id);
 										return (
 											<Link key={`menu-item-${item2}`} className={styles.link} to={`/page:${item2}`} onClick={this.handleClickItem}>
-												<MenuItem selected={selected} onClick={this.handleSpoyler(item2)}>
-													<Typography className={styles.itemMenu}>{ '|____|____'}{data.titles[ii].title }</Typography>
+												<MenuItem selected={selected} onClick={this.handleSpoyler(item2)} style={{"overflow": "auto"}}>
+													<Typography className={styles.itemMenu}>{ '--'}{data.titles[ii].title }</Typography>
 												</MenuItem>
 											</Link>
 										);
@@ -96,7 +103,7 @@ export default class WpOptions extends Component {
 									return (
 										<div key={`menu-item-${item1}`}>
 											<Link to={`/page:${item1}`} className={styles.link} onClick={this.handleClickItem}>
-												<MenuItem selected={selected} onClick={this.handleSpoyler(item1)}>
+												<MenuItem selected={selected} onClick={this.handleSpoyler(item1)} style={{"overflow": "auto"}}>
 													<Typography className={styles.itemMenu}>{ secondLevelTitle }</Typography>
 													{this.state[item1]? <ExpandLessIcon /> : <ExpandMoreIcon />}
 												</MenuItem>
@@ -110,7 +117,7 @@ export default class WpOptions extends Component {
 							return (
 								<div key={`menu-item-${item.id}`}>
 									<Link className={styles.link} to={`/page:${item.id}`} onClick={this.handleClickItem}>
-										<MenuItem selected={selected} onClick={this.handleSpoyler(item.id)}>
+										<MenuItem selected={selected} onClick={this.handleSpoyler(item.id)} style={{"overflow": "auto"}}>
 											<Typography className={styles.itemMenu}>{item.title}</Typography>
 										{this.state[item.id]? <ExpandLessIcon /> : <ExpandMoreIcon />}
 										</MenuItem>
@@ -127,7 +134,7 @@ export default class WpOptions extends Component {
 		return (
 			<div>
 				<WpApi
-					get={'PAGES_LIST'}
+					get={this.selector}
 					element={OptionsElement}
 				/>
 			</div>

@@ -50,7 +50,6 @@ export default class WpOptions extends Component {
 
 	render() {
 		const OptionsElement = (data) => {
-			console.log(data)
 			this.handleClickItem();
 			let selected = (!(this.id === -1))
 			return (

@@ -8,6 +8,10 @@ body {
 	overflow: auto;
 }
 
+.categoriesList {
+	position: fixed;
+}
+
 .has-large-font-size {
 	font-size: 16pt;
 }

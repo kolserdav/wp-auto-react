@@ -67,7 +67,7 @@
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "sync-request": "^6.1.0",
-    "wordpress-data": "^0.1.9"
+    "wordpress-data": "^0.1.11"
   },
   "stats": "errors-only"
 }

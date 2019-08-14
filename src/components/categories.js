@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import WpOptions from './options.js';
 import styles from '../styles.css';
+import getLocale from '../getLocale.js';
 
 
 // Components
 import WpCategory from './category.js';
 import WpApi from './api.js';
+import WpCategoriesMenu from './categoriesMenu.js';
 
 export default class WpCategories extends Component {
 
   constructor(props) {
     super(props);
     this.props = props;
+		this.lang = getLocale();
   }
   
   render() {
@@ -29,13 +32,12 @@ export default class WpCategories extends Component {
 					this.rawData.posts.push(itemTitles);
 				}
 			});
-			const categoriesElement = () => {
-				
-				this.rawData
-			};
-			console.log(this.rawData)
 			return (
-				<div>dsd</div>
+				<div>
+					<WpCategoriesMenu
+						elements={this.rawData}
+					/>
+				</div>
 			);
 		};
     return (

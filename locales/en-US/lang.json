@@ -12,5 +12,6 @@
 		"NO_CATEGORY": "Category not found",
 		"PARENT_CATEGORY_NAME": "Parent category",
 		"CHILD_CATEGORIES": "Child categories",
-		"DESCRIPTION_CATEGORY": "Category description"
+		"DESCRIPTION_CATEGORY": "Category description",
+		"CATEGORIES_PANEL": "Categories panel"
 }

@@ -8,8 +8,16 @@ body {
 	overflow: auto;
 }
 
+.categoriesMenu {
+	overflow: auto;
+	width: inherit;
+	height: 90vh;
+}
+
 .categoriesList {
-	position: fixed;
+	position: relative;
+	margin-right: 40px;
+	height: 100%;	
 }
 
 .has-large-font-size {

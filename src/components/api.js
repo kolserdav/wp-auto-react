@@ -17,7 +17,7 @@ const categoriesForId = 'CATEGORIES_FOR_ID';
 const allLists = 'ALL_LISTS';
 const homePost = 'HOME_POST';
 
-
+// TODO New api need
 class WpApi extends Component {
 	constructor(props) {
 		super(props);

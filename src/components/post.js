@@ -3,11 +3,12 @@ import Typography from '@material-ui/core/Typography';
 import getLocale from '../getLocale.js';
 import styles from '../styles.css';
 import getFontSize from "../getFontSize.js";
+import { withRouter } from 'react-router-dom';
 
 // Components
 import WpApi from './api.js';
 
-export default class WpPost extends Component {
+class WpPost extends Component {
 	
 	constructor(props) {
 		super(props);
@@ -24,6 +25,9 @@ export default class WpPost extends Component {
 	}
 
 	render() {
+		if (this.props.match.path === '/post:id') {
+			console.log(43)
+		}
 		const element = (data, html) => {
 			const post = data.items[0];
 			let title, content;
@@ -54,3 +58,5 @@ export default class WpPost extends Component {
 		);
 	}
 }
+
+export default withRouter(WpPost);

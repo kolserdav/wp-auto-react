@@ -29,7 +29,7 @@ body {
 }
 
 .subHeader {
-	padding-top: 70px;
+	padding-top: 60px;
 
 }
 
@@ -85,6 +85,10 @@ body {
 
 .navbar_root {
 	
+}
+
+.root {
+	margin-top: 70px;	
 }
 
 .navbar_link {

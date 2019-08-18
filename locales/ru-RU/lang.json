@@ -8,5 +8,10 @@
                 "POSTS_LIST_HEADER": "Список записей",
                 "POSTS_LIST_DESCRIPTION": "Этот блок отображает все записи Wordpress сайта",
                 "MENU_HEADER": "В этом меню отображены все страницы Wordpress сайта",
-		"CATEGORY_HEADER": "На этой странице отображается категория сайта Wordpress по ИД"
+		"CATEGORY_HEADER": "На этой странице отображается категория сайта Wordpress по ИД",
+		"NO_CATEGORY": "Категория не найдена",
+		"PARENT_CATEGORY_NAME": "Родительская категория",
+		"CHILD_CATEGORIES": "Подкатегории",
+		"DESCRIPTION_CATEGORY": "Описание категории",
+		"CATEGORIES_PANEL": "Окно категорий"
 }

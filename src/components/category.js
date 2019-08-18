@@ -62,11 +62,11 @@ export default class WpCategory extends Component {
 			return (
 				<div>
 					<Typography variant='h4'>{ categoryTitle }</Typography>
-					<Typography variant='subtitle1'>{ description !== ''? `${this.lang.DESCRIPTION_CATEGORY} :` : ''} { description }</Typography>
-					<Typography variant='subtitle1'>{ this._parentFound? `${this.lang.PARENT_CATEGORY_NAME} :` :  '' } { title }</Typography>
-					<Typography variant='subtitle1'> { this._childFound? `${this.lang.CHILD_CATEGORIES} :` : '' }  </Typography>
+					<Typography variant='body1'>{ description !== ''? `${this.lang.DESCRIPTION_CATEGORY} :` : ''} { description }</Typography>
+					<Typography variant='body1'>{ this._parentFound? `${this.lang.PARENT_CATEGORY_NAME} :` :  '' } { title }</Typography>
+					<Typography variant='body1'> { this._childFound? `${this.lang.CHILD_CATEGORIES} :` : '' }  </Typography>
 					{ this.childrenCategories }
-					<Typography variant='subtitle1'>{ this._postsFound? `${firstCapitalize(this.lang.POSTS)} :` : '' }</Typography>
+					<Typography variant='body1'>{ this._postsFound? `${firstCapitalize(this.lang.POSTS)} :` : '' }</Typography>
 					{ this.posts }
 				</div>
 			);

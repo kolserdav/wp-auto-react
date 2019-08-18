@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import style from '../styles.css';
 import getLocale from '../getLocale.js';
+import { withRouter } from 'react-router-dom';
 const request = require('sync-request');
 
 const allPages = 'ALL_PAGES';
@@ -17,9 +18,10 @@ const allLists = 'ALL_LISTS';
 const homePost = 'HOME_POST';
 
 
-export default class WpApi extends Component {
+class WpApi extends Component {
 	constructor(props) {
 		super(props);
+		this.test = true;
 		this.level = this.getLevel();
 		this.origin = window.location.origin;
 		this.state = {
@@ -29,6 +31,10 @@ export default class WpApi extends Component {
 		this.pathPrefix = '';
 		this.dataDirName = 'storage';
 		this.includeData(this.level);
+	}
+
+	componentDidCatch(e) {
+		console.log('catch', e)
 	}
 
   static propTypes = {
@@ -118,6 +124,7 @@ export default class WpApi extends Component {
 	}
 
 	getItemForId(id, name) {
+		console.log('id', id)
 		let item;
 		switch(name) {
 			case allPosts:
@@ -312,6 +319,8 @@ export default class WpApi extends Component {
 			name = categoriesForId;
 		}
 		return data.items.map(item => {
+			console.log('item', item)
+			console.log(this.props)
 			return this.getItemForId(item, name);
 		})
 	}
@@ -342,9 +351,11 @@ export default class WpApi extends Component {
   render() {
 		this.getRequest(this.level);
     return (
-      <div className={this.props.className}>
+      <div className={this.props.className} props={this.props}>
 				{this.props.element(this.element, this.dangerousHTML)}
       </div>
     )
   }
 }
+
+export default withRouter(WpApi);

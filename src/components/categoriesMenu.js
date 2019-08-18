@@ -17,6 +17,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 export default class WpCategoriesMenu extends React.Component {
 
 	constructor(props) {
+		console.log(2)
 		super(props);
 		this.state = {
 			open: true,

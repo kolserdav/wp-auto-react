@@ -20,7 +20,9 @@
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
-    "save": "node node_modules/wordpress-data/index --host http://wordpress.loc"
+    "save": "node node_modules/wordpress-data/index --host http://wordpress.loc",
+    "ui": "ls node_modules/@material-ui/core/",
+    "ux": "ls ./src/components"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -64,6 +66,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
+    "clsx": "^1.0.4",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "sync-request": "^6.1.0",
